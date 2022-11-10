@@ -81,7 +81,27 @@ void DList<T>::prepend(T item)
 template <class T>
 void DList<T>::removeHead()
 {
-	
+	if (head == nullptr)
+	{
+		return;
+	}
+	else
+	{
+		DListNode<T>* temp = head;
+		head = head->next;
+		if (head != nullptr)
+		{
+			head->previous = nullptr;
+		}
+		else
+		{
+			tail = nullptr;
+		}
+		delete temp;
+		count--;
+	}
+
+
 }
 
 template <class T>
