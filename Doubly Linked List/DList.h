@@ -51,13 +51,31 @@ DList<T>::DList()
 template <class T>
 void DList<T>::append(T item)
 {
-	
+	if (head == nullptr)
+	{
+		head = tail = new DListNode<T>(item);
+	}
+	else
+	{
+		tail->insertAfter(item);
+		tail = tail->next;
+	}
+	count++;
 }
 
 template <class T>
 void DList<T>::prepend(T item)
 {
-	
+	if (head == nullptr)
+	{
+		head = tail = new DListNode<T>(item);
+	}
+	else
+	{
+		head->insertBefore(item);
+		head = head->previous;
+	}
+	count++;
 }
 
 template <class T>

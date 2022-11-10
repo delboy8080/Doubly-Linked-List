@@ -36,11 +36,30 @@ DListNode<T>::DListNode(T item)
 template <class T>
 void DListNode<T>::insertAfter(T item)
 {
-	
+	DListNode<T>* temp = new DListNode<T>(item);
+	temp->previous = this;
+	temp->next = this->next;
+	this->next = temp;
+
+	if (temp->next != nullptr)
+	{
+		temp->next->previous = temp;
+	}
+
 }
 
 template <class T>
 void DListNode<T>::insertBefore(T item)
 {
-	
+	DListNode<T>* N = new DListNode<T>(item);
+	DListNode<T>* R = this;
+	DListNode<T>* L =  R->previous;
+
+	N->next = R;
+	N->previous = L;
+	R->previous = N;
+	if (N->previous != nullptr)
+	{
+		L->next = N;
+	}
 }
