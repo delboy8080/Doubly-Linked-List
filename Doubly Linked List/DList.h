@@ -85,19 +85,19 @@ void DList<T>::removeHead()
 	{
 		return;
 	}
+	else if (head == tail)
+	{
+		delete head;
+		head = tail = nullptr;
+		count--;
+	}
 	else
 	{
 		DListNode<T>* temp = head;
 		head = head->next;
-		if (head != nullptr)
-		{
-			head->previous = nullptr;
-		}
-		else
-		{
-			tail = nullptr;
-		}
+		head->previous = nullptr;
 		delete temp;
+		temp = nullptr;
 		count--;
 	}
 
@@ -107,7 +107,26 @@ void DList<T>::removeHead()
 template <class T>
 void DList<T>::removeTail()
 {
-	
+	if (head == nullptr)
+	{
+		return;
+	}
+	else if (head == tail)
+	{
+		delete head;
+		head = tail = nullptr;
+		count--;
+	}
+	else
+	{
+		DListNode<T>* temp = tail;
+		tail = tail->previous;
+		tail->next = nullptr;
+		delete temp;
+		temp = nullptr;
+		count--;
+
+	}
 }
 template <class T>
 DListIterator<T> DList<T>::getIterator()
